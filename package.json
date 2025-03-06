@@ -7,9 +7,11 @@
     "dependencies": {
         "@types/node": "^22.9.0",
         "commander": "^13.1.0",
+        "config": "^3.3.12",
         "dotenv": "^16.4.5"
     },
     "devDependencies": {
+        "@types/config": "^3.3.5",
         "@typescript-eslint/eslint-plugin": "^6.21.0",
         "@typescript-eslint/parser": "^6.21.0",
         "eslint": "^8.57.0",
@@ -32,6 +34,6 @@
     },
     "homepage": "https://github.com/cbility/smartsuite-api-wrapper#readme",
     "bin": {
-        "smartsuite": "dist/command.js"
+        "smartsuite": "dist/command/index.js"
     }
 }

@@ -1,14 +1,19 @@
 #! /usr/bin/env node
-import { Command, CommanderError } from 'commander';
-import init from './init';
+import { Command } from 'commander';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { init } from './init.js';
+
+const __filename = fileURLToPath(import.meta.url);
+export const __dirname = dirname(__filename);
 const program = new Command();
 
 program
     .name('smartsuite-api-wrapper')
     .description('Command line interface for working with the SmartSuite API wrapper')
     .version('0.1.0')
-    .option('-i, --init [directory]', 'create smartsuite-config.json file and .env file in the specified directory', ".")
-    .option('--first')
+    .option('-i, --init [directory path]', 'create smartsuite-config.json file and .env file in the specified directory', ".")
+    .option('--db pull [API Key] [Workspace ID]', 'pull data schema from SmartSuite API and generate types')
     .option('-s, --separator <char>')
 
 program.parse();
@@ -25,6 +30,10 @@ if (options.init && numSelectedOptions > 1) {
     console.error(`error: option '--init' cannot be used with another option`);
     process.exit(1);
 }
-if (options.init) init(options.init);
+
+if (options.init) {
+    await init(options.init);
+};
+process.exit(0);
 
 
