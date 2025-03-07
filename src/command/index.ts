@@ -12,9 +12,8 @@ program
     .name('smartsuite-api-wrapper')
     .description('Command line interface for working with the SmartSuite API wrapper')
     .version('0.1.0')
-    .option('-i, --init [directory path]', 'create smartsuite-config.json file and .env file in the specified directory', ".")
-    .option('--db pull [API Key] [Workspace ID]', 'pull data schema from SmartSuite API and generate types')
-    .option('-s, --separator <char>')
+    .option('-i, --init [directory path]', 'create smartsuite-config.json file and .env file in the specified directory. Defaults to the current directory.')
+    .option('--db pull [API Key] [Workspace ID]', 'pull data schema from SmartSuite API and generate data model and types')
 
 program.parse();
 
@@ -34,6 +33,10 @@ if (options.init && numSelectedOptions > 1) {
 if (options.init) {
     await init(options.init);
 };
+
+if (options.db) {
+    console.log('db option selected');
+}
 process.exit(0);
 
 

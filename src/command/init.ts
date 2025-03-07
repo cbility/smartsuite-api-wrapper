@@ -4,9 +4,12 @@ import path from 'path';
 import * as readline from 'readline';
 import { __dirname } from './index.js';
 
-export async function init(directoryPath: string) {
+export async function init(directoryPath: string | boolean) {
     console.log('Initialising SmartSuite API wrapper...');
-
+    //set default directory path to current directory if not provided
+    if (typeof directoryPath === 'boolean') {
+        directoryPath = '.';
+    }
     const workingDir = process.cwd();
     const targetDir = path.resolve(workingDir, directoryPath);
     const configFilePath = path.join(targetDir, 'smartsuite-config.js');
