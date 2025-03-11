@@ -2,18 +2,25 @@
 import { Command } from 'commander';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { init } from './init.js';
+import init from './init.js';
+import dbPull from './dbPull.js';
 
 const __filename = fileURLToPath(import.meta.url);
 export const __dirname = dirname(__filename);
 const program = new Command();
 
 program
-    .name('smartsuite-api-wrapper')
+    .name('smartsuite')
     .description('Command line interface for working with the SmartSuite API wrapper')
-    .version('0.1.0')
+    .version('0.0.1')
     .option('-i, --init [directory path]', 'create smartsuite-config.json file and .env file in the specified directory. Defaults to the current directory.')
-    .option('--db pull [API Key] [Workspace ID]', 'pull data schema from SmartSuite API and generate data model and types')
+    .command('db')
+    .description('parent command for smartsuite database operations')
+    .command('pull [APIKey] [WorkspaceID]').
+    description('pull data schema from SmartSuite API and generate data model and types')
+    .action(() => {
+        console.log('db pull command selected');
+    });
 
 program.parse();
 
@@ -35,7 +42,9 @@ if (options.init) {
 };
 
 if (options.db) {
-    console.log('db option selected');
+    console.log('db-init option selected');
+    //await getTables();
+
 }
 process.exit(0);
 

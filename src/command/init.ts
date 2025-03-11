@@ -4,7 +4,7 @@ import path from 'path';
 import * as readline from 'readline';
 import { __dirname } from './index.js';
 
-export async function init(directoryPath: string | boolean) {
+export default async function init(directoryPath: string | boolean) {
     console.log('Initialising SmartSuite API wrapper...');
     //set default directory path to current directory if not provided
     if (typeof directoryPath === 'boolean') {

@@ -3,8 +3,8 @@
 //store database structure ts file at ../src/tablesTest.ts
 // usage: node packages\smartSuite\dist\getTables.js {account ID} {API Key} {ID of table to add (1)} {ID of table to add (2)}...
 
-import SmartSuite from "./SmartSuiteAPIWrapper.js";
-import { default as cachedTables } from "./tables.js";
+import SmartSuite from "../SmartSuiteAPIWrapper.js";
+import { default as cachedTables } from "../tables.js";
 import { promises as fs } from 'fs';
 import path from 'path';
 import { dirname } from 'path';
@@ -18,7 +18,7 @@ const ss = new SmartSuite(accountID as string, APIKey);
 
 await updateTables();
 
-async function updateTables() {
+export default async function updateTables() {
     try {
         //get existing tables from API
         const existingTables = await ss.listTables();
